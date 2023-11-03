@@ -5,7 +5,7 @@ public class DragAndRotateObject : MonoBehaviour
     private bool isDragging = false;
     private Vector3 offset;
     private float targetRotation = 0.0f;
-    public float rotationAmount = 90.0f;
+    public float rotationAmount = -90.0f;
 
     void Update()
     {
