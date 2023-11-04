@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class TriggerIn : MonoBehaviour
 {
+   
+
     public static TriggerIn instance;
 
     bool dragInProgress = false;
+
 
     [HideInInspector] public bool canBePlaced = false;
 
@@ -18,6 +21,7 @@ public class TriggerIn : MonoBehaviour
     void Start()
     {
         DragAndRotateObject.OnDraggingStateChanged += HandleDraggingStateChanged;
+
     }
 
     void HandleDraggingStateChanged(bool isDragging)
@@ -28,6 +32,7 @@ public class TriggerIn : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
+
         if (collision.CompareTag("Out") && !dragInProgress)
         {
             canBePlaced = true;

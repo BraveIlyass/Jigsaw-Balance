@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class TriggerOut : MonoBehaviour
 {
+    
     public static TriggerOut instance;
 
     bool dragInProgress = false;
+
 
     [HideInInspector] public bool canBePlaced = false;
 
@@ -28,6 +30,7 @@ public class TriggerOut : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
+
         if (collision.CompareTag("In") && !dragInProgress)
         {
             canBePlaced = true;

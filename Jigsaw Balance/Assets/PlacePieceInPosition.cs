@@ -4,23 +4,32 @@ using UnityEngine;
 
 public class PlacePieceInPosition : MonoBehaviour
 {
-    Vector3 piecePosition;
     [SerializeField] Transform piecePlaceHolderPosition;
 
-    void Start()
+    void Update()
     {
-        piecePosition = transform.position;
+        DragAndRotateObject selectedPiece = DragAndRotateObject.SelectedPiece;
+
+        if (selectedPiece != null)
+        {
+            if (TriggerIn.instance.canBePlaced && selectedPiece.collidedWithPosition != Vector3.zero)
+            {
+                UpdatePosition(selectedPiece.collidedWithPosition);
+            }
+
+            if (TriggerOut.instance.canBePlaced && selectedPiece.collidedWithPosition != Vector3.zero)
+            {
+                UpdatePosition(selectedPiece.collidedWithPosition);
+            }
+        }
     }
 
-    void FixedUpdate()
+    private void UpdatePosition(Vector3 newPosition)
     {
-
-        if (TriggerIn.instance.canBePlaced || TriggerOut.instance.canBePlaced)
+        DragAndRotateObject selectedPiece = DragAndRotateObject.SelectedPiece;
+        if (selectedPiece != null)
         {
-            //Debug.Log("Puzzle Piece can be placed");
-            piecePosition = piecePlaceHolderPosition.position;
-            DragAndRotateObject.SelectedPiece.transform.position = piecePosition; // Update the position
+            selectedPiece.transform.position = newPosition;
         }
-
     }
 }

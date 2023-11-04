@@ -14,7 +14,7 @@ public class DragAndRotateObject : MonoBehaviour
     public float rotationAmount = -90.0f;
 
 
-
+    [HideInInspector] public Vector3 collidedWithPosition;
 
 
     void Update()
@@ -79,5 +79,12 @@ public class DragAndRotateObject : MonoBehaviour
     }
 
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlaceHolder"))
+        {
+            collidedWithPosition = collision.transform.position;
+        }
 
+    }
 }
