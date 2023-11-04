@@ -8,6 +8,7 @@ TagManager:
   - In
   - Out
   - PlaceHolder
+  - NoActionZone
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3201870687
+    locked: 0
   - name: Place Holders
     uniqueID: 2902219885
     locked: 0
@@ -53,4 +57,7 @@ TagManager:
     locked: 0
   - name: Fit Detectors
     uniqueID: 1956851007
+    locked: 0
+  - name: Foreground
+    uniqueID: 3359047151
     locked: 0

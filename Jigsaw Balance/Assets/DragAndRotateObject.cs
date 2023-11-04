@@ -49,10 +49,13 @@ public class DragAndRotateObject : MonoBehaviour
 
         SelectedPiece = null; // Set the currently selected piece
 
+
+        Debug.Log("Is trying to drag is it working ?????");
     }
 
     void OnMouseUp()
     {
+
         isDragging = false;
         NotifyDraggingStateChanged(false);
 
@@ -62,6 +65,7 @@ public class DragAndRotateObject : MonoBehaviour
 
     void OnMouseDrag()
     {
+        isDragging = true;
         NotifyDraggingStateChanged(true);
     }
     void RotateObject()

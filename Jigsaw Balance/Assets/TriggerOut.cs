@@ -40,4 +40,5 @@ public class TriggerOut : MonoBehaviour
             canBePlaced = false;
         }
     }
+
 }
