@@ -5,11 +5,15 @@ public class DragAndRotateObject : MonoBehaviour
     public delegate void DraggingStateChangedEventHandler(bool isDragging);
     public static event DraggingStateChangedEventHandler OnDraggingStateChanged;
 
+    public static DragAndRotateObject SelectedPiece { get; private set; }
+
     private bool isDragging = false;
 
     private Vector3 offset;
     private float targetRotation = 0.0f;
     public float rotationAmount = -90.0f;
+
+
 
 
 
@@ -43,6 +47,7 @@ public class DragAndRotateObject : MonoBehaviour
         isDragging = true;
         NotifyDraggingStateChanged(true);
 
+        SelectedPiece = null; // Set the currently selected piece
 
     }
 
@@ -50,6 +55,9 @@ public class DragAndRotateObject : MonoBehaviour
     {
         isDragging = false;
         NotifyDraggingStateChanged(false);
+
+        SelectedPiece = this; // Set the currently selected piece
+
     }
 
     void OnMouseDrag()
@@ -69,4 +77,7 @@ public class DragAndRotateObject : MonoBehaviour
             OnDraggingStateChanged(isDragging);
         }
     }
+
+
+
 }

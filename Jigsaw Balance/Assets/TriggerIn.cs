@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class TriggerIn : MonoBehaviour
 {
-    bool compatibility = false;
+    public static TriggerIn instance;
 
+    bool dragInProgress = false;
+
+    [HideInInspector] public bool canBePlaced = false;
+
+
+    void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         DragAndRotateObject.OnDraggingStateChanged += HandleDraggingStateChanged;
@@ -13,17 +22,19 @@ public class TriggerIn : MonoBehaviour
 
     void HandleDraggingStateChanged(bool isDragging)
     {
-        compatibility = isDragging;
+        dragInProgress = isDragging;
     }
 
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Out") && !compatibility)
+        if (collision.CompareTag("Out") && !dragInProgress)
         {
-            Debug.Log(compatibility);
-
+            canBePlaced = true;
         }
-
+        else
+        {
+            canBePlaced = false;
+        }
     }
 }
