@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class TriggerIn : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D collision)
+    bool compatibility = false;
+
+    void Start()
     {
-        if (collision.CompareTag("Out"))
+        DragAndRotateObject.OnDraggingStateChanged += HandleDraggingStateChanged;
+    }
+
+    void HandleDraggingStateChanged(bool isDragging)
+    {
+        compatibility = isDragging;
+    }
+
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Out") && !compatibility)
         {
-            Debug.Log("This is a possible fit");
+            Debug.Log(compatibility);
+
         }
+
     }
 }
