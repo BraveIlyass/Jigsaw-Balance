@@ -21,13 +21,17 @@ public class NoActionZone : MonoBehaviour
         if (other.CompareTag(targetTag))
         {
             isInNoActionZone = true;
+
+            //Debug.Log("No Action zone is activated");
         }
+
     }
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag(targetTag))
         {
             isInNoActionZone = true;
+            //Debug.Log("No Action zone is activated");
         }
     }
     void OnTriggerExit2D(Collider2D other)
@@ -35,6 +39,7 @@ public class NoActionZone : MonoBehaviour
         if (other.CompareTag(targetTag))
         {
             isInNoActionZone = false;
+            //Debug.Log("No Action zone is Disabled");
         }
     }
 }

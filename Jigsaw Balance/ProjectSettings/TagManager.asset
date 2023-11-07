@@ -9,6 +9,8 @@ TagManager:
   - Out
   - PlaceHolder
   - NoActionZone
+  - Slot
+  - Tab
   layers:
   - Default
   - TransparentFX
@@ -16,11 +18,11 @@ TagManager:
   - 
   - Water
   - UI
+  - No Action Zone
+  - Place Holder
+  - Slots and Tabs
   - 
-  - 
-  - 
-  - 
-  - 
+  - Puzzle Piece
   - 
   - 
   - 

@@ -31,14 +31,20 @@ public class PlacePieceInPosition : MonoBehaviour
         {
             if (selectedPiece != null)
             {
-                if (TriggerIn.instance.canBePlaced && selectedPiece.collidedWithPosition != Vector3.zero)
+                //Debug.Log("Slot.instance.canBePlaced -------" + Slot.instance.canBePlaced + "-------");
+                //Debug.Log("selectedPiece.collidedWithPosition -------" + selectedPiece.collidedWithPosition + "-------");
+                if (Slot.instance.canBePlaced && selectedPiece.collidedWithPosition != Vector3.zero)
                 {
                     UpdatePosition(selectedPiece.collidedWithPosition);
+                    // Reset collidedWithPosition when the piece is placed
+                    selectedPiece.collidedWithPosition = Vector3.zero;
                 }
 
-                if (TriggerOut.instance.canBePlaced && selectedPiece.collidedWithPosition != Vector3.zero)
+                if (Tab.instance.canBePlaced && selectedPiece.collidedWithPosition != Vector3.zero)
                 {
                     UpdatePosition(selectedPiece.collidedWithPosition);
+                    // Reset collidedWithPosition when the piece is placed
+                    selectedPiece.collidedWithPosition = Vector3.zero;
                 }
             }
         }
