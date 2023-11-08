@@ -5,11 +5,11 @@ public class DragAndRotate : MonoBehaviour
     public bool selected = false;
     private Vector3 offset;
     private float zPosition;
-    private Renderer renderer;
+    private Renderer _renderer;
 
     void Start()
     {
-        renderer = GetComponent<Renderer>();
+        _renderer = GetComponent<Renderer>();
     }
 
     void OnMouseDown()
@@ -22,7 +22,7 @@ public class DragAndRotate : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 
             // Set sortingOrder to ensure the object is on top
-            renderer.sortingOrder = 1;
+            _renderer.sortingOrder = 1;
         }
     }
 
@@ -44,7 +44,7 @@ public class DragAndRotate : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, zPosition);
 
             // Reset sortingOrder
-            renderer.sortingOrder = 0;
+            _renderer.sortingOrder = 0;
         }
     }
 
