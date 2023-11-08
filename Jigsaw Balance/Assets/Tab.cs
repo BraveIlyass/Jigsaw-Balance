@@ -29,6 +29,7 @@ public class Tab : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
+        canBePlaced = collision.CompareTag("Slot") && !dragInProgress;
         Debug.Log("Tag of the collision -------" + collision.tag + "-------");
         Debug.Log("Is player draging ?  -------" + dragInProgress + "-------");
     }
