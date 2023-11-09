@@ -7,8 +7,6 @@ public class PositionSetter : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(OrientationDetection.Instance.rightOrientation);
-        //Work partially....
         if (OrientationDetection.Instance.rightOrientation)
         {
             foreach (var detector in overlapDetectors)

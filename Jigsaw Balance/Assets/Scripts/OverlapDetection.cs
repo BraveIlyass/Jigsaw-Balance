@@ -12,7 +12,7 @@ public class OverlapDetection : MonoBehaviour
 
     public DragAndRotate dragAndRotate;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
 
             if (dragAndRotate.selected)//Do this operation only for the select puzzle piece
@@ -38,7 +38,7 @@ public class OverlapDetection : MonoBehaviour
 
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (dragAndRotate.selected)//Do this operation only for the select puzzle piece
         {

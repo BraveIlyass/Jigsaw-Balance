@@ -12,7 +12,7 @@ public class OrientationDetection : MonoBehaviour
 
     private void Awake()
     {
-        // Ensure there's only one instance of OrientationDetection
+        // Ensure there's only one instance of GameManager
         if (Instance == null)
         {
             Instance = this;
@@ -22,7 +22,7 @@ public class OrientationDetection : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Slot"))
         {
@@ -30,7 +30,7 @@ public class OrientationDetection : MonoBehaviour
             //Debug.Log("Can't be place");
         }
     }
-    void OnCollisionStay2D(Collision2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Slot"))
         {
@@ -39,7 +39,7 @@ public class OrientationDetection : MonoBehaviour
         }
     }
 
-    void OnCollisionExit2D(Collision2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Slot"))
         {
