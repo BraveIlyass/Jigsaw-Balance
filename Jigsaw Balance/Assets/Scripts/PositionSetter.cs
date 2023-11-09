@@ -7,14 +7,20 @@ public class PositionSetter : MonoBehaviour
 
     void Update()
     {
-        foreach (var detector in overlapDetectors)
+        Debug.Log(OrientationDetection.Instance.rightOrientation);
+        //Work partially....
+        if (OrientationDetection.Instance.rightOrientation)
         {
-            if (detector.canBePlaced && !dragAndRotate.selected)
+            foreach (var detector in overlapDetectors)
             {
-                transform.position = detector.newPositionOfPuzzlePiece.position;
-                detector.canBePlaced = false;
-                break; // Exit loop after first successful placement (if needed)
+                if (detector.canBePlaced && !dragAndRotate.selected)
+                {
+                    transform.position = detector.newPositionOfPuzzlePiece.position;
+                    detector.canBePlaced = false;
+                    break; // Exit loop after first successful placement (if needed)
+                }
             }
         }
+
     }
 }

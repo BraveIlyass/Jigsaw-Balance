@@ -14,26 +14,28 @@ public class OverlapDetection : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (dragAndRotate.selected)//Do this operation only for the select puzzle piece
-        {
-            if (collision.gameObject.CompareTag(lookForThisTag))
+
+            if (dragAndRotate.selected)//Do this operation only for the select puzzle piece
             {
-                placeHolderPosition = collision.gameObject.GetComponent<PlaceHolderPosition>();
-
-                if (placeHolderPosition != null)
+                if (collision.gameObject.CompareTag(lookForThisTag))
                 {
-                    newPositionOfPuzzlePiece = placeHolderPosition.placeHolderPosition;
-                    canBePlaced = true;
+                    placeHolderPosition = collision.gameObject.GetComponent<PlaceHolderPosition>();
 
-                    // Set the active puzzle piece
-                    activePuzzlePiece = transform.parent;
-                }
-                else
-                {
-                    canBePlaced = false;
+                    if (placeHolderPosition != null)
+                    {
+                        newPositionOfPuzzlePiece = placeHolderPosition.placeHolderPosition;
+                        canBePlaced = true;
+
+                        // Set the active puzzle piece
+                        activePuzzlePiece = transform.parent;
+                    }
+                    else
+                    {
+                        canBePlaced = false;
+                    }
                 }
             }
-        }
+
     }
 
     void OnCollisionExit2D(Collision2D collision)
