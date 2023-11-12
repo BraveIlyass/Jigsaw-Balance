@@ -7,6 +7,8 @@ public class DragAndRotate : MonoBehaviour
     private float zPosition;
     private Renderer _renderer;
 
+    [SerializeField] GameObject[] confiners;
+
     void Start()
     {
         _renderer = GetComponent<Renderer>();
@@ -33,6 +35,9 @@ public class DragAndRotate : MonoBehaviour
             Vector3 cursorPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
             Vector3 objectPosition = Camera.main.ScreenToWorldPoint(cursorPosition) + offset;
             transform.position = objectPosition;
+
+            // Call SetConfiners here, after the drag operation begins
+            SetConfiners(selected);
         }
     }
 
@@ -45,6 +50,9 @@ public class DragAndRotate : MonoBehaviour
 
             // Reset sortingOrder
             _renderer.sortingOrder = 0;
+
+            // Call SetConfiners here, after the drag operation ends
+            SetConfiners(selected);
         }
     }
 
@@ -53,6 +61,18 @@ public class DragAndRotate : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && selected)
         {
             transform.Rotate(Vector3.forward * -90f);
+        }
+    }
+
+    // Function that goes through all confiners in a puzzle and set their active state to that of select, meaning if an object is not selected, it does not have a reason for its confiners to be active.
+    void SetConfiners(bool isSelected)
+    {
+        foreach (var confiner in confiners)
+        {
+            if (confiner != null)
+            {
+                confiner.SetActive(isSelected);
+            }
         }
     }
 }

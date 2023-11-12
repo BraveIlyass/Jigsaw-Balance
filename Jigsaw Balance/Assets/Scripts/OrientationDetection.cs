@@ -13,14 +13,9 @@ public class OrientationDetection : MonoBehaviour
     private void Awake()
     {
         // Ensure there's only one instance of GameManager
-        if (Instance == null)
-        {
+
             Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+
     }
     void OnTriggerEnter2D(Collider2D collision)
     {

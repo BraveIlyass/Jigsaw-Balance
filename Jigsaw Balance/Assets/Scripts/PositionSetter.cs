@@ -5,6 +5,7 @@ public class PositionSetter : MonoBehaviour
     public OverlapDetection[] overlapDetectors;
     public DragAndRotate dragAndRotate;
 
+    public bool pieceIsPlaced = false;
     void Update()
     {
         if (OrientationDetection.Instance.rightOrientation)
