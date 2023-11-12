@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3262970288589158150
 Transform:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &7437058398047618992
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -327,6 +327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
+  confiners:
+  - {fileID: 304039730425505070}
 --- !u!114 &5816919824528428834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +345,7 @@ MonoBehaviour:
   - {fileID: 223338835786291957}
   - {fileID: 271014406497492650}
   dragAndRotate: {fileID: 1337520247408628663}
+  pieceIsPlaced: 0
 --- !u!1 &3246920966199498444
 GameObject:
   m_ObjectHideFlags: 0
