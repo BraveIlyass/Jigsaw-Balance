@@ -6,5 +6,4 @@ public class PuzzleManager : MonoBehaviour
 {
     [SerializeField] GameObject puzzleHolderRight;
     [SerializeField] GameObject puzzleHolderLeft;
-
 }

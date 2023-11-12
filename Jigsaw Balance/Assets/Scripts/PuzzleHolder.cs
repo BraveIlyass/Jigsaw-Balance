@@ -1,34 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PuzzleHolder : MonoBehaviour
 {
-    private List<Transform> puzzlePieces = new List<Transform>();
+    private float totalMasse = 0.0f;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PuzzlePiece"))
         {
-            // Add the puzzle piece to the list
-            puzzlePieces.Add(collision.transform);
-            // Set the parent to this holder
-            collision.transform.parent = transform;
+            var dragAndRotate = collision.GetComponent<DragAndRotate>();
+            if (dragAndRotate != null && dragAndRotate != DragAndRotate.CurrentlySelected)
+            {
+                collision.transform.SetParent(transform);
+            }
         }
     }
 
+    // Optional: Add logic in OnTriggerExit2D if you want to deparent the puzzle piece when it exits the trigger area
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PuzzlePiece"))
-        {
-            // Remove the puzzle piece from the list
-            puzzlePieces.Remove(collision.transform);
-            // Check if there are still puzzle pieces in the list
-            if (puzzlePieces.Count == 0)
-            {
-                // If no puzzle pieces are left, set the parent to null
-                collision.transform.parent = null;
-            }
-        }
+        // Your logic here, if needed
     }
 }
