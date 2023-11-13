@@ -266,7 +266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &238152257409701529
 Transform:
   m_ObjectHideFlags: 0
@@ -668,7 +668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3463699903195252376
 Transform:
   m_ObjectHideFlags: 0
@@ -900,10 +900,9 @@ GameObject:
   - component: {fileID: 2738708347913832166}
   - component: {fileID: 1639055629576420592}
   - component: {fileID: 1183742239660286358}
-  - component: {fileID: 584257732473624974}
   m_Layer: 0
   m_Name: Puzzle-Piece-5
-  m_TagString: PuzzlePiece
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -994,7 +993,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1086,18 +1085,6 @@ MonoBehaviour:
   - {fileID: 6332200184359941309}
   dragAndRotate: {fileID: 1639055629576420592}
   pieceIsPlaced: 0
---- !u!114 &584257732473624974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5574180948714764283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff8d7b50dea47d545b874e824082a6ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5825650099069915697
 GameObject:
   m_ObjectHideFlags: 0
