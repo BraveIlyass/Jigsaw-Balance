@@ -10,11 +10,14 @@ public class DragAndRotate : MonoBehaviour
     private Vector3 offset;
     private float zPosition;
     private Renderer _renderer;
+    private Rigidbody2D rb;
     [SerializeField] GameObject[] confiners;
 
     void Start()
     {
         _renderer = GetComponent<Renderer>();
+        rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
+        SetConfiners(false); // Initialize all confiners to inactive
     }
 
     void Update()
@@ -34,18 +37,23 @@ public class DragAndRotate : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
+
         if (hit.collider != null && hit.collider.gameObject == gameObject)
         {
             selected = true;
             CurrentlySelected = this;
 
             transform.SetParent(null); // Deparent the puzzle piece when picked up
+            rb.gravityScale = 0; // Set gravity to 0 when picked up
 
             zPosition = transform.position.z;
             offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
             _renderer.sortingOrder = 1;
+
             OnPickedUp?.Invoke(gameObject);
+
+            SetConfiners(true); // Activate confiners when selected
         }
     }
 
@@ -63,22 +71,26 @@ public class DragAndRotate : MonoBehaviour
             selected = false;
             CurrentlySelected = null;
 
-            // Reset position and rendering order
             transform.position = new Vector3(transform.position.x, transform.position.y, zPosition);
             _renderer.sortingOrder = 0;
 
-            // Check if the puzzle piece is within the trigger area of any PuzzleHolder
+            bool isChildOfPuzzleHolder = false;
             Collider2D[] hitColliders = Physics2D.OverlapPointAll(transform.position);
             foreach (var hitCollider in hitColliders)
             {
                 if (hitCollider.gameObject.GetComponent<PuzzleHolder>() != null)
                 {
                     transform.SetParent(hitCollider.transform, worldPositionStays: true);
-                    break; // Exit the loop once a suitable parent is found
+                    isChildOfPuzzleHolder = true;
+                    break;
                 }
             }
 
+            rb.gravityScale = isChildOfPuzzleHolder ? 1 : 0; // Set gravity based on whether it's a child of PuzzleHolder
+
             OnDropped?.Invoke(gameObject);
+
+            SetConfiners(false); // Deactivate confiners when not selected
         }
     }
 
@@ -87,6 +99,18 @@ public class DragAndRotate : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && selected)
         {
             transform.Rotate(Vector3.forward * -90f);
+        }
+    }
+
+    // Function to set the active state of all confiners based on the selection status
+    void SetConfiners(bool isSelected)
+    {
+        foreach (var confiner in confiners)
+        {
+            if (confiner != null)
+            {
+                confiner.SetActive(isSelected);
+            }
         }
     }
 }
