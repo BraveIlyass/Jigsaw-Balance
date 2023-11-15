@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PuzzleHolder : MonoBehaviour
 {
-    private float totalMasse = 0.0f;
+    //private float totalMasse = 0f;
 
     void OnTriggerStay2D(Collider2D collision)
     {

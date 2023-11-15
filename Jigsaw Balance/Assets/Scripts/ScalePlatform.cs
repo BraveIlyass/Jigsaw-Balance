@@ -19,7 +19,7 @@ public class ScalePlatform : MonoBehaviour
         SmoothlyMoveToTarget();
     }
 
-    float CalculateTotalMass()
+    public float CalculateTotalMass()
     {
         float totalMass = 0f;
         foreach (Transform child in puzzleHolder)

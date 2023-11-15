@@ -745,6 +745,7 @@ GameObject:
   - component: {fileID: 3729502970357547049}
   - component: {fileID: 7393634439167986930}
   - component: {fileID: 6059182797003306053}
+  - component: {fileID: 9054704380587320657}
   - component: {fileID: 6747791978831551960}
   m_Layer: 0
   m_Name: Puzzle-Piece-4
@@ -928,6 +929,18 @@ MonoBehaviour:
   - {fileID: 1436080369947777689}
   dragAndRotate: {fileID: 7393634439167986930}
   pieceIsPlaced: 0
+--- !u!114 &9054704380587320657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475877776974359142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abda5cf95edc769458ff7949c54ba3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6747791978831551960
 MonoBehaviour:
   m_ObjectHideFlags: 0

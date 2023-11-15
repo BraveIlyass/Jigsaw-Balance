@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
+using UnityEngine.SocialPlatforms;
 
 public class DragAndRotate : MonoBehaviour
 {
@@ -12,12 +14,16 @@ public class DragAndRotate : MonoBehaviour
     private Renderer _renderer;
     private Rigidbody2D rb;
     [SerializeField] GameObject[] confiners;
+    PuzzlePiece puzzlePiece;
+
+
 
     void Start()
     {
         _renderer = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
         SetConfiners(false); // Initialize all confiners to inactive
+        puzzlePiece = GetComponentInChildren<PuzzlePiece>();
     }
 
     void Update()
@@ -29,6 +35,8 @@ public class DragAndRotate : MonoBehaviour
         if (selected)
         {
             OnMouseDrag();
+
+            //DisconnectPie
         }
     }
 
@@ -54,6 +62,13 @@ public class DragAndRotate : MonoBehaviour
             OnPickedUp?.Invoke(gameObject);
 
             SetConfiners(true); // Activate confiners when selected
+
+            //Reseting puzzle piece rigidi body type
+            if (puzzlePiece != null)
+            {
+                puzzlePiece.SetKinematic(false);
+            }
+
         }
     }
 
@@ -62,6 +77,9 @@ public class DragAndRotate : MonoBehaviour
         Vector3 cursorPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, zPosition);
         Vector3 objectPosition = Camera.main.ScreenToWorldPoint(cursorPosition) + offset;
         transform.position = objectPosition;
+
+        puzzlePiece.DisconnectFrom();
+
     }
 
     void OnMouseUp()
@@ -86,11 +104,18 @@ public class DragAndRotate : MonoBehaviour
                 }
             }
 
-            rb.gravityScale = isChildOfPuzzleHolder ? 1 : 0; // Set gravity based on whether it's a child of PuzzleHolder
+            rb.gravityScale = isChildOfPuzzleHolder ? 30 : 0; // Set gravity based on whether it's a child of PuzzleHolder
 
             OnDropped?.Invoke(gameObject);
 
             SetConfiners(false); // Deactivate confiners when not selected
+
+
+            //Setting puzzle piece rigidibody 2d to be kenematic, avoiding piece disconnect  on collide
+            if (puzzlePiece != null && puzzlePiece.IsFullyConnected())
+            {
+                puzzlePiece.SetKinematic(true);
+            }
         }
     }
 
